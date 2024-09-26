@@ -21,7 +21,6 @@
             color: #fff;
             margin: 0;
             padding: 0;
-        
         }
 
         header {
@@ -40,6 +39,7 @@
             background-color: #3E3E3E;
             padding: 20px;
             border-radius: 10px;
+            text-align: justify;
         }
         .discoteca img {
             width: 100%;
@@ -65,12 +65,26 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .metodo-pago {
+            background-color: #3E3E3E;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .metodo-pago img {
+            width: 100%;
+            max-width: 200px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Subasta de Espacios o Mesas VIP - Discoteca NAUTICA </h1>
+    <h1>Subasta de Espacios o Mesas VIP - Discoteca NAUTICA</h1>
     <p>Utiliza tu wallet Phantom para participar en la subasta de mesas VIP con tokens de Solana</p>
     <!-- Botón para conectar con la wallet Phantom -->
     <button id="connectWallet">Conectar Wallet Phantom</button>
@@ -85,26 +99,33 @@
         <p>Disfruta de presentaciones exclusivas y artistas reconocidos, mientras te premian por ser uno de nuestros clientes más leales. En nuestra discoteca, valoramos tu preferencia, y ahora tienes la oportunidad de acceder a espacios exclusivos para vivir los eventos desde una perspectiva privilegiada. Solo necesitas registrarte con tu Wallet y canjear los tokens que has acumulado por tu consumo. ¡Eleva tu experiencia y asegura un lugar especial en cada fiesta con los benecios que solo nuestros clientes VIP pueden disfrutar!</p>
     </div>
 
-    <!-- Sección de la subasta -->
+    <!-- Sección de la subasta con método de pago en la parte superior -->
     <div class="subasta">
+        <!-- Nueva Sección de Método de Pago -->
+        <div class="metodo-pago">
+            <h2>Método de Pago</h2>
+            <img src="qr.jpg" alt="Código QR para pago">
+            <p>Escanea el código para realizar el pago con tu Wallet.</p>
+        </div>
+
         <h2>Espacios Disponibles para Subasta</h2>
         <!-- Espacio 1 -->
         <div class="mesa">
-            <h3>Espacio Mega Box 1 (15 personas) </h3>
-            <p>Ubicación cerca del escenario, puedes pasar una tarde junto a tus artistas favoritos, tambien puedes acceder a promociones que te damos en nuestro local</p>
+            <h3>Espacio Mega Box 1 (15 personas)</h3>
+            <p>Ubicación cerca del escenario, puedes pasar una tarde junto a tus artistas favoritos, también puedes acceder a promociones que te damos en nuestro local</p>
             <p>Oferta mínima: 8 SOL TOKENS</p>
             <button onclick="subastar('Mesa VIP 1', 8)">Participar en la Subasta</button>
         </div>
         <!-- Espacio 2 -->
         <div class="mesa">
-            <h3>Espacio Mega Box 2 (10 personas) </h3>
+            <h3>Espacio Mega Box 2 (10 personas)</h3>
             <p>Ubicación cerca de la barra, acceso a fotos y promociones de consumo</p>
             <p>Oferta mínima: 5 SOL TOKENS</p>
             <button onclick="subastar('Mesa VIP 2', 5)">Participar en la Subasta</button>
         </div>
         <!-- Mesa 3 -->
         <div class="mesa">
-            <h3>Espacio Mega Box 3 (5 personas) </h3>
+            <h3>Espacio Mega Box 3 (5 personas)</h3>
             <p>Ubicación en área privada</p>
             <p>Oferta mínima: 3 SOL TOKENS</p>
             <button onclick="subastar('Mesa VIP 3', 3)">Participar en la Subasta</button>
