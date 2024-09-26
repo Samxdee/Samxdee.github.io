@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subasta de Mesas VIP con Tokens Solana</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2C2C2C;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('ibiza.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        
+        }
+
+        header {
+            background-color: #1A1A1A;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            margin: 20px;
+        }
+        .discoteca {
+            width: 50%;
+            background-color: #3E3E3E;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .discoteca img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .subasta {
+            width: 30%;
+            background-color: #3E3E3E;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .mesa {
+            background-color: #5C5C5C;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .mesa button {
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Subasta de Espacios o Mesas VIP - Discoteca NAUTICA </h1>
+    <p>Utiliza tu wallet Phantom para participar en la subasta de mesas VIP con tokens de Solana</p>
+    <!-- Botón para conectar con la wallet Phantom -->
+    <button id="connectWallet">Conectar Wallet Phantom</button>
+    <div id="walletAddress"></div>
+</header>
+
+<div class="content">
+    <!-- Sección de la maqueta de la discoteca -->
+    <div class="discoteca">
+        <h2>Maqueta de la Discoteca</h2>
+        <img src="megabox.jpg" alt="Maqueta Discoteca">
+        <p>Disfruta de presentaciones exclusivas y artistas reconocidos, mientras te premian por ser uno de nuestros clientes más leales. En nuestra discoteca, valoramos tu preferencia, y ahora tienes la oportunidad de acceder a espacios exclusivos para vivir los eventos desde una perspectiva privilegiada. Solo necesitas registrarte con tu Wallet y canjear los tokens que has acumulado por tu consumo. ¡Eleva tu experiencia y asegura un lugar especial en cada fiesta con los benecios que solo nuestros clientes VIP pueden disfrutar!</p>
+    </div>
+
+    <!-- Sección de la subasta -->
+    <div class="subasta">
+        <h2>Espacios Disponibles para Subasta</h2>
+        <!-- Espacio 1 -->
+        <div class="mesa">
+            <h3>Espacio Mega Box 1 (15 personas) </h3>
+            <p>Ubicación cerca del escenario, puedes pasar una tarde junto a tus artistas favoritos, tambien puedes acceder a promociones que te damos en nuestro local</p>
+            <p>Oferta mínima: 8 SOL TOKENS</p>
+            <button onclick="subastar('Mesa VIP 1', 8)">Participar en la Subasta</button>
+        </div>
+        <!-- Espacio 2 -->
+        <div class="mesa">
+            <h3>Espacio Mega Box 2 (10 personas) </h3>
+            <p>Ubicación cerca de la barra, acceso a fotos y promociones de consumo</p>
+            <p>Oferta mínima: 5 SOL TOKENS</p>
+            <button onclick="subastar('Mesa VIP 2', 5)">Participar en la Subasta</button>
+        </div>
+        <!-- Mesa 3 -->
+        <div class="mesa">
+            <h3>Espacio Mega Box 3 (5 personas) </h3>
+            <p>Ubicación en área privada</p>
+            <p>Oferta mínima: 3 SOL TOKENS</p>
+            <button onclick="subastar('Mesa VIP 3', 3)">Participar en la Subasta</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const connectWalletButton = document.getElementById("connectWallet");
+    const walletAddressDiv = document.getElementById("walletAddress");
+    let phantomWallet;
+    async function connectWallet() {
+        if (window.solana) {
+            try {
+                const response = await window.solana.connect();
+                phantomWallet = response.publicKey.toString();
+                walletAddressDiv.innerText = Conectado: ${phantomWallet};
+            } catch (err) {
+                console.error("Error al conectar la wallet", err);
+            }
+        } else {
+            window.location.href = "https://phantom.app/";
+        }
+    }
+    connectWalletButton.addEventListener("click", connectWallet);
+</script>
+
+
+</body>
+</html>
