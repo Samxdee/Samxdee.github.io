@@ -121,7 +121,7 @@
             try {
                 const response = await window.solana.connect();
                 phantomWallet = response.publicKey.toString();
-                walletAddressDiv.innerText = Conectado: ${phantomWallet};
+                walletAddressDiv.innerText = `Conectado: ${phantomWallet}`;
             } catch (err) {
                 console.error("Error al conectar la wallet", err);
             }
@@ -131,7 +131,6 @@
     }
     connectWalletButton.addEventListener("click", connectWallet);
 </script>
-
 
 </body>
 </html>
