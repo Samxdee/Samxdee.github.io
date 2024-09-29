@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subasta en Vivo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2C2C2C;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1A1A1A;
+            padding: 20px;
+            text-align: center;
+        }
+        .subasta-panel {
+            background-color: #3E3E3E;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+        .subasta-panel h2, .subasta-panel p {
+            margin-bottom: 10px;
+        }
+        .subasta-panel button {
+            background-color: #FF5733;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Panel de Subastas en Vivo</h1>
+</header>
+
+<div class="subasta-panel">
+    <h2 id="mesaNombre">Cargando...</h2>
+    <p id="ofertaMinima">Oferta mínima: Cargando...</p>
+    <p>Puedes ofertar en tiempo real. ¡Sube tu oferta para asegurar tu espacio VIP!</p>
+    <button onclick="realizarOferta()">Realizar una Oferta</button>
+</div>
+
+<script>
+    // Función para obtener los parámetros de la URL
+    function obtenerParametrosURL() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+            mesa: params.get('mesa'),
+            ofertaMinima: params.get('ofertaMinima')
+        };
+    }
+
+    // Mostrar los detalles de la subasta
+    window.onload = function() {
+        const { mesa, ofertaMinima } = obtenerParametrosURL();
+        document.getElementById('mesaNombre').textContent = `Subasta para: ${mesa}`;
+        document.getElementById('ofertaMinima').textContent = `Oferta mínima: ${ofertaMinima} SOL TOKENS`;
+    };
+
+    // Función de ejemplo para realizar una oferta
+    function realizarOferta() {
+        alert('Tu oferta ha sido registrada. ¡Buena suerte!');
+        // Aquí puedes integrar lógica de blockchain para procesar la oferta
+    }
+</script>
+
+</body>
+</html>
