@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #2C2C2C;
-            color: #fff;
+            color: #000000;
             margin: 0;
             padding: 0;
             background-image: url('ibiza.jpg');
@@ -18,121 +18,315 @@
         }
 
         header {
-            background-color: #1A1A1A;
+            background-color: #212529;
+            color: white;
             padding: 20px;
             text-align: center;
         }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
         .content {
             display: flex;
-            flex-direction: row;
-            justify-content: space-around;
-            margin: 20px;
+            justify-content: space-between;
+            gap: 20px;
         }
-        .discoteca {
-            width: 50%;
-            background-color: #3E3E3E;
+
+        .discoteca,
+        .subasta {
+            width: 48%;
+            background-color: #fff;
+            border-radius: 8px;
             padding: 20px;
-            border-radius: 10px;
-            text-align: justify;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         .discoteca img {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 8px;
         }
-        .subasta {
-            width: 30%;
-            background-color: #3E3E3E;
-            padding: 20px;
-            border-radius: 10px;
+
+        .subasta h2 {
+            font-size: 22px;
+            color: #333;
         }
+
         .mesa {
-            background-color: #5C5C5C;
-            padding: 10px;
+            background-color: #f1f1f1;
+            padding: 15px;
             border-radius: 5px;
             margin-bottom: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
         }
+
         .mesa button {
-            background-color: #FF5733;
+            background-color: #007bff;
             color: white;
             border: none;
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
         }
-        .metodo-pago {
-            background-color: #3E3E3E;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 10px;
+
+        .auction-screen {
+            display: none;
             text-align: center;
+            padding: 20px;
+            background-color: #A9A9A9; /* Color plomo (gris) */
         }
-        .metodo-pago img {
-            width: 100%;
-            max-width: 200px;
-            margin: 10px 0;
-            border-radius: 10px;
+        
+
+        .offer-buttons {
+            margin-top: 20px;
         }
 
+        .offer-buttons button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .offer-buttons button:hover {
+            background-color: #0056b3;
+        }
+
+        .current-bid {
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #1e00ff;
+        }
+
+        #biddersList {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            text-align: center;
+        }
+
+        .modal-content h2 {
+            color: #333;
+        }
+
+        .modal-content button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #218838;
+        }
+
+        .countdown {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: red;
+        }
+
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        footer {
+            background-color: #212529;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Subasta de Espacios o Mesas VIP - Discoteca NAUTICA</h1>
-    <p>Utiliza tu wallet Phantom para participar en la subasta de mesas VIP con tokens de Solana</p>
-    <!-- Botón para conectar con la wallet Phantom -->
-    <button id="connectWallet">Conectar Wallet Phantom</button>
-    <div id="walletAddress"></div>
+    <h1>Subasta de Mesas VIP - Discoteca NAUTICA</h1>
 </header>
 
-<div class="content">
-    <!-- Sección de la maqueta de la discoteca -->
-    <div class="discoteca">
-        <h2>Maqueta de la Discoteca</h2>
-        <img src="megabox.jpg" alt="Maqueta Discoteca">
-        <p>Disfruta de presentaciones exclusivas y artistas reconocidos, mientras te premian por ser uno de nuestros clientes más leales. En nuestra discoteca, valoramos tu preferencia, y ahora tienes la oportunidad de acceder a espacios exclusivos para vivir los eventos desde una perspectiva privilegiada. Solo necesitas registrarte con tu Wallet y canjear los tokens que has acumulado por tu consumo. ¡Eleva tu experiencia y asegura un lugar especial en cada fiesta con los benecios que solo nuestros clientes VIP pueden disfrutar!</p>
+<div class="container">
+    <!-- Formulario de registro -->
+    <div id="registerForm">
+        <h2>Regístrate para participar en la subasta</h2>
+        <input type="text" id="fullName" placeholder="Nombres y Apellidos">
+        <button id="registerButton">Registrarse</button>
+        <p id="walletAddress"></p>
+        <button id="connectWallet">Conectar Wallet Phantom</button>
     </div>
 
-    <!-- Sección de la subasta con método de pago en la parte superior -->
-    <div class="subasta">
-        <!-- Nueva Sección de Método de Pago -->
-        <div class="metodo-pago">
-            <h2>Método de Pago</h2>
-            <img src="qr.jpg" alt="Código QR para pago">
-            <p>Escanea el código para realizar el pago con tu Wallet.</p>
+    <!-- Página principal (pantalla de selección de subasta) -->
+    <div class="content" id="mainContent" style="display: none;">
+        <!-- Información de la discoteca -->
+        <div class="discoteca">
+            <h2>Maqueta de la Discoteca</h2>
+            <img src="disco nautica.jpg" style="width: 500px; height: auto;">
+            <p>Disfruta de presentaciones exclusivas y artistas reconocidos, mientras te premian por ser uno de nuestros clientes más leales. En nuestra discoteca, valoramos tu preferencia, y ahora tienes la oportunidad de acceder a espacios exclusivos para vivir los eventos desde una perspectiva privilegiada.</p>
+            <p>¡Eleva tu experiencia y asegura un lugar especial en cada fiesta con los beneficios que solo nuestros clientes VIP pueden disfrutar!</p>
         </div>
 
-        <h2>Espacios Disponibles para Subasta</h2>
-        <!-- Espacio 1 -->
-        <div class="mesa">
-            <h3>Espacio Mega Box 1 (15 personas)</h3>
-            <p>Ubicación cerca del escenario, puedes pasar una tarde junto a tus artistas favoritos, también puedes acceder a promociones que te damos en nuestro local</p>
-            <p>Oferta mínima: 8 SOL TOKENS</p>
-            <button onclick="subastar('Mesa VIP 1', 8)">Participar en la Subasta</button>
+        <!-- Sección de la subasta -->
+        <div class="subasta">
+            <h2>Participa en la Subasta</h2>
+            <div class="auction-start-info">El día 30 de octubre a las 7 p.m. empezará la subasta para todos.</div>
+            <!-- Espacio 1 -->
+            <div class="mesa">
+                <h3>Espacio Mega Box 1 (15 personas)</h3>
+                <p>Ubicación cerca del escenario, puedes pasar una tarde junto a tus artistas favoritos, también puedes acceder a promociones que te damos en nuestro local.</p>
+                <p>Oferta mínima: 8 CumbiaCoin (GAAAAAA) Tokens</p>
+                <button onclick="subastar('Mega Box 1', 8)">Participar en la Subasta</button>
+            </div>
+            <!-- Espacio 2 -->
+            <div class="mesa">
+                <h3>Espacio Mega Box 2 (10 personas)</h3>
+                <p>Ubicación cerca de la barra, acceso a fotos y promociones de consumo.</p>
+                <p>Oferta mínima: 5 CumbiaCoin (GAAAAAA) Tokens</p>
+                <button onclick="subastar('Mega Box 2', 5)">Participar en la Subasta</button>
+            </div>
+            <!-- Espacio 3 -->
+            <div class="mesa">
+                <h3>Espacio Mega Box 3 (5 personas)</h3>
+                <p>Ubicación en área privada</p>
+                <p>Oferta mínima: 3 CumbiaCoin (GAAAAAA) Tokens</p>
+                <button onclick="subastar('Mega Box 3', 3)">Participar en la Subasta</button>
+            </div>
         </div>
-        <!-- Espacio 2 -->
-        <div class="mesa">
-            <h3>Espacio Mega Box 2 (10 personas)</h3>
-            <p>Ubicación cerca de la barra, acceso a fotos y promociones de consumo</p>
-            <p>Oferta mínima: 5 SOL TOKENS</p>
-            <button onclick="subastar('Mesa VIP 2', 5)">Participar en la Subasta</button>
-        </div>
-        <!-- Mesa 3 -->
-        <div class="mesa">
-            <h3>Espacio Mega Box 3 (5 personas)</h3>
-            <p>Ubicación en área privada</p>
-            <p>Oferta mínima: 3 SOL TOKENS</p>
-            <button onclick="subastar('Mesa VIP 3', 3)">Participar en la Subasta</button>
+    </div>
+
+    <!-- Pantalla de subasta -->
+    <div class="auction-screen" id="auctionScreen">
+        <h1>Subasta Activa - Discoteca NAUTICA</h1>
+        <div class="auction-info">
+            <h2>Espacio en Subasta: <span id="auctionSpace"></span></h2>
+            <h3>Oferta Mínima: <span id="minBid"></span> CumbiaCoin (GAAAAAA) Tokens</h3>
+            <div id="timer">Tiempo restante: <span id="timeLeft">10:00</span></div>
+            <div class="current-bid">Oferta más alta: <span id="currentBidValue">0</span> CumbiaCoin (GAAAAAA) Tokens</div>
+
+            <!-- Botones para ofertar tokens -->
+            <div class="offer-buttons">
+                <button onclick="offerTokens(1)">Ofertar 1 Token</button>
+                <button onclick="offerTokens(2)">Ofertar 2 Tokens</button>
+            </div>
+
+            <!-- Lista de personas que están subastando -->
+            <div id="biddersList">
+                <h3>Personas participando en la subasta:</h3>
+                <ul id="bidderNamesList"></ul>
+            </div>
+
+            <!-- Botón para regresar a la selección de subastas -->
+            <button class="back-button" onclick="regresar()">Regresar a ver más subastas</button>
         </div>
     </div>
 </div>
 
+<!-- Modal para mostrar al ganador -->
+<div id="winnerModal" class="modal">
+    <div class="modal-content">
+        <h2>¡Ganador de la Subasta!</h2>
+        <p id="winnerName"></p>
+        <p id="winnerAmount"></p>
+        <p>Dirección para la transferencia: <strong>HUNrdWSzeBSNYiu4Js4dhn5cMpXKNQgTzoRFDCQ8PPpG</strong></p>
+        <div id="qrCode"></div>
+        <div class="countdown">Tiempo restante para transferir: <span id="countdownTimer">03:00</span></div>
+        <button onclick="closeModal()">Cerrar</button>
+    </div>
+</div>
+
+<!-- Modal para WhatsApp -->
+<div id="whatsappModal" class="whatsapp-modal">
+    <h2>Envía la captura de los tokens enviados</h2>
+    <p>Por favor, envía la captura de los tokens enviados al número de WhatsApp: <strong>+51 979 462 198</strong> para corroborar si se hizo el pago correctamente.</p>
+    <button onclick="closeWhatsAppModal()">Cerrar y Reiniciar</button>
+</div>
+
+<footer>
+    <p>Discoteca Nautica - Subasta en Vivo | Solana Blockchain</p>
+</footer>
+
+<!-- Cargar Solana SDK y QR Code Generator -->
+<script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <script>
+    let phantomWallet = null;
+    let auctionData = {}; // Para guardar los estados de las subastas (incluye el tiempo, pujas y participantes)
+    let auctionIntervals = {}; // Para guardar los temporizadores de cada subasta
+    let connectedUsers = Math.floor(Math.random() * 20) + 1; // Simular personas conectadas
+    let currentAuction = null; // Identificador de la subasta actual
+    const destinationWallet = "HUNrdWSzeBSNYiu4Js4dhn5cMpXKNQgTzoRFDCQ8PPpG"; // Dirección del dueño de la subasta
+    const tokenMintAddress = "14UGL6smKzWeaXuUnCs5G3P8AZLP3LvKfMkyXkNDCPuq"; // Dirección del token CumbiaCoin (GAAAAAA)
+
+    const mainContent = document.getElementById("mainContent");
+    const auctionScreen = document.getElementById("auctionScreen");
+    const bidderNamesList = document.getElementById("bidderNamesList");
+    const timerElement = document.getElementById("timeLeft");
+    const currentBidValueElement = document.getElementById("currentBidValue");
+
+    const registerForm = document.getElementById("registerForm");
+
+    // Conexión con la wallet Phantom
     const connectWalletButton = document.getElementById("connectWallet");
     const walletAddressDiv = document.getElementById("walletAddress");
-    let phantomWallet;
+    const registerButton = document.getElementById("registerButton");
+
     async function connectWallet() {
-        if (window.solana) {
+        if (window.solana && window.solana.isPhantom) {
             try {
                 const response = await window.solana.connect();
                 phantomWallet = response.publicKey.toString();
@@ -141,10 +335,173 @@
                 console.error("Error al conectar la wallet", err);
             }
         } else {
+            // Si Phantom no está instalado, redirige al sitio de descarga de Phantom
             window.location.href = "https://phantom.app/";
         }
     }
+
     connectWalletButton.addEventListener("click", connectWallet);
+
+    // Función para registrar al usuario y mostrar la pantalla principal
+    registerButton.addEventListener("click", () => {
+        const fullName = document.getElementById("fullName").value;
+        if (fullName && phantomWallet) {
+            alert(`Usuario registrado: ${fullName}`);
+            registerForm.style.display = "none";
+            mainContent.style.display = "flex"; // Mostrar la pantalla principal
+        } else {
+            alert("Por favor, ingresa tus nombres y apellidos y conecta tu wallet.");
+        }
+    });
+
+    // Función para iniciar la subasta y mostrar la pantalla de subasta
+    function subastar(espacio, ofertaMinima) {
+        if (phantomWallet) {
+            currentAuction = espacio;
+
+            if (!auctionData[currentAuction]) {
+                auctionData[currentAuction] = {
+                    currentBid: ofertaMinima,
+                    highestBidder: null,
+                    bidders: {},
+                    remainingTime: 10 * 60 // 10 minutos
+                };
+            }
+
+            // Recuperar los datos de la subasta actual
+            const auction = auctionData[currentAuction];
+            document.getElementById("auctionSpace").innerText = currentAuction;
+            document.getElementById("minBid").innerText = ofertaMinima;
+            currentBidValueElement.innerText = auction.currentBid;
+            updateBiddersList();
+
+            // Ocultar la pantalla principal y mostrar la pantalla de subasta
+            mainContent.style.display = "none";
+            auctionScreen.style.display = "block";
+
+            // Iniciar el temporizador de subasta o continuar si ya está corriendo
+            if (!auctionIntervals[currentAuction]) {
+                startAuctionTimer(currentAuction);
+            }
+        } else {
+            alert("Por favor, conéctate y regístrate primero.");
+        }
+    }
+
+    // Función para ofertar tokens
+    function offerTokens(tokens) {
+        const fullName = document.getElementById("fullName").value;
+
+        if (currentAuction && auctionData[currentAuction] && fullName) {
+            const auction = auctionData[currentAuction];
+            const newBid = auction.currentBid + tokens;
+            auction.currentBid = newBid;
+            auction.highestBidder = fullName;
+
+            // Actualizar o añadir persona a la lista de subastadores
+            if (!auction.bidders[fullName]) {
+                auction.bidders[fullName] = 0;
+            }
+            auction.bidders[fullName] += tokens;
+
+            // Actualizar interfaz
+            currentBidValueElement.innerText = auction.currentBid;
+            updateBiddersList();
+
+            alert(`Has ofertado ${tokens} CumbiaCoin (GAAAAAA) tokens. La oferta actual es ${auction.currentBid} tokens.`);
+        } else {
+            alert("La subasta no está activa o no has iniciado sesión.");
+        }
+    }
+
+    // Actualizar lista de participantes
+    function updateBiddersList() {
+        const auction = auctionData[currentAuction];
+        bidderNamesList.innerHTML = ''; // Limpiar lista
+        for (let bidder in auction.bidders) {
+            const li = document.createElement("li");
+            li.textContent = `${bidder} ha ofertado un total de ${auction.bidders[bidder]} CumbiaCoin (GAAAAAA) tokens`;
+            bidderNamesList.appendChild(li);
+        }
+    }
+
+    // Función para iniciar el temporizador de una subasta específica
+    function startAuctionTimer(auctionId) {
+        const auction = auctionData[auctionId];
+        auctionIntervals[auctionId] = setInterval(() => {
+            if (auction.remainingTime > 0) {
+                auction.remainingTime--;
+                const minutes = Math.floor(auction.remainingTime / 60);
+                const seconds = auction.remainingTime % 60;
+                if (currentAuction === auctionId) {
+                    timerElement.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                }
+            } else {
+                clearInterval(auctionIntervals[auctionId]);
+                auctionIntervals[auctionId] = null;
+                if (currentAuction === auctionId) {
+                    alert(`¡La subasta ha terminado! El ganador es ${auction.highestBidder} con una oferta de ${auction.currentBid} CumbiaCoin (GAAAAAA) tokens.`);
+                    showWinnerModal(auction.highestBidder, auction.currentBid); // Mostrar modal con el ganador
+                }
+            }
+        }, 1000);
+    }
+
+    // Función para mostrar el modal del ganador con QR y tiempo límite para transferencia
+    function showWinnerModal(winnerName, winnerAmount) {
+        const modal = document.getElementById("winnerModal");
+        document.getElementById("winnerName").innerText = `Ganador: ${winnerName}`;
+        document.getElementById("winnerAmount").innerText = `Tokens Ofertados: ${winnerAmount}`;
+        document.querySelector(".modal-content strong").innerText = destinationWallet;
+
+        // Generar el QR Code
+        const qrCodeContainer = document.getElementById("qrCode");
+        qrCodeContainer.innerHTML = ""; // Limpiar contenido anterior
+        new QRCode(qrCodeContainer, destinationWallet);
+
+        // Iniciar cuenta regresiva de 3 minutos
+        let countdownTime = 3 * 60;
+        const countdownElement = document.getElementById("countdownTimer");
+        const countdownInterval = setInterval(() => {
+            if (countdownTime > 0) {
+                countdownTime--;
+                const minutes = Math.floor(countdownTime / 60);
+                const seconds = countdownTime % 60;
+                countdownElement.innerText = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            } else {
+                clearInterval(countdownInterval);
+                showWhatsAppModal(); // Mostrar modal de WhatsApp al acabar el tiempo
+            }
+        }, 1000);
+
+        modal.style.display = "block"; // Mostrar el modal
+    }
+
+    // Función para mostrar el modal de WhatsApp
+    function showWhatsAppModal() {
+        const whatsappModal = document.getElementById("whatsappModal");
+        whatsappModal.style.display = "block";
+    }
+
+    // Función para cerrar el modal de WhatsApp y reiniciar la página
+    function closeWhatsAppModal() {
+        const whatsappModal = document.getElementById("whatsappModal");
+        whatsappModal.style.display = "none";
+        location.reload(); // Recargar la página para reiniciar la subasta
+    }
+
+    // Función para cerrar el modal del ganador
+    function closeModal() {
+        const modal = document.getElementById("winnerModal");
+        modal.style.display = "none"; // Ocultar el modal
+        regresar(); // Volver a la pantalla de subastas
+    }
+
+    // Función para regresar a la pantalla de subastas
+    function regresar() {
+        auctionScreen.style.display = "none";
+        mainContent.style.display = "flex"; // Mostrar la pantalla principal
+    }
 </script>
 
 </body>
